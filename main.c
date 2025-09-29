@@ -10,9 +10,8 @@ int	main(int arc, char **arv)
 	graphics_init(&fractol, &fractol.mlx);
 	render(&fractol, &fractol.mlx);
 	
-	// mlx_pixel_put(mlx.mlx_ptr, mlx.win_ptr, 250, 250, 0xFFFFFFF);
 	// mlx_key_hook (mlx.win_ptr, ));
 
-	init_hooks(&fractol);
+	hooks(&fractol, &fractol.mlx);
 	mlx_loop(fractol.mlx.mlx_ptr);
 }

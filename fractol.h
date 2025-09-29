@@ -7,6 +7,7 @@
 # include <unistd.h>
 # include <stdbool.h>
 # include <math.h>
+// # include <X11/keysystem.h>
 
 # define W_HEIGHT 500
 # define W_WIDTH 500
@@ -25,6 +26,8 @@
 
 # define COLOR_MODE 4
 # define DIVERGENCE_BASE_COLOR 13283165
+
+# define DESTROY 17
 
 struct s_fractol;
 struct s_coords;
@@ -103,11 +106,14 @@ void	put_pixel(t_img *img, t_coords coords, int color);
 //mapping.c
 t_complex	pixel_to_complex(t_view *view, t_coords coords);
 
+
 void	parse(t_fractol *fractol, int arc, char **arv);
+void	hooks(t_fractol *fractol, t_mlx *mlx);
 
 //utils.c
 void	end_program(int exit_status, t_fractol *fractol);
 void end_program_with_help(int exit_status, t_fractol *fractol);
+int	exit_destroy(t_fractol *fractol);
 bool	is_number_str(char *str);
 
 void	julia_set(t_fractol *fractol, t_coords coords);

@@ -21,6 +21,12 @@ void end_program_with_help(int exit_status, t_fractol *fractol)
 	end_program(exit_status, fractol);
 }	
 
+int	exit_destroy(t_fractol *fractol)
+{
+	end_program(EXIT_SUCCESS, fractol);
+	return (EXIT_SUCCESS);
+}
+
 bool	is_number_str(char *str)
 {
 	int	i;
