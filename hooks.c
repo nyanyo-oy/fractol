@@ -3,20 +3,29 @@
 static int	handle_zoom(int button, int x, int y, t_fractol *fractol)
 {
 	int		sign;
-	double	zoom_x;
-	double	zoom_y;
-	
+	double	delta_x;
+	double	delta_y;
+
 	sign = 0;
 	if (button == MOUSE_DOWN || button == XK_equal)
 		sign = 1;
 	else if (button == MOUSE_UP || button == XK_minus)
 		sign = -1;
-	zoom_x = (fractol->view.max_x - fractol->view.min_x) * 0.1;
-	zoom_y = (fractol->view.max_y - fractol->view.min_y) * 0.1;
-	if (((zoom_x < 0.000000000000001 || zoom_y < 0.000000000000001))
-		
-	
+	delta_x = (fractol->view.max_x - fractol->view.min_x) * 0.1;
+	delta_y = (fractol->view.max_y - fractol->view.min_y) * 0.1;
+	if (((delta_x < 1e-15 || delta_y < 1e-15) && sign == 1) ||
+			((delta_x > 2e80 || delta_y > 2e80) && sign == -1))
+		return (EXIT_FAILURE);
+	fractol->view.max_x = fractol->view.max_x
+		- (delta_x * ((double)1 - (double)x / (W_WIDTH - 1))) * sign;
+	fractol->view.min_x = fractol->view.min_x
+		+ (delta_x * ((double)x / (W_WIDTH - 1))) * sign;
+	fractol->view.max_x = fractol->view.min_y
+		- (delta_y * ((double)y / (W_HEIGHT - 1))) * sign;
+	fractol->view.max_x = fractol->view.min_y 
+		+ (delta_y * ((double)1 - (double)y / (W_HEIGHT - 1))) * sign;
 
+	return(EXIT_SUCCESS);
 }
 static int	mouse_hook_handler(int button, int x, int y, t_fractol *fractol)
 {
@@ -42,7 +51,7 @@ static int	key_hook_handler(int keycode, t_fractol *fractol)
 	}
 	else if (keycode == XK_equal || keycode == XK_minus)
 		handle_zoom(keycode, W_WIDTH / 2, W_HEIGHT / 2, fractol);
-		
+	render(fractol, &fractol->mlx);
 	return (0);
 }
 

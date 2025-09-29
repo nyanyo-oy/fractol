@@ -3,11 +3,11 @@
 
 # include "minilibx-linux/mlx.h"
 # include "libft/libft.h"
+# include <math.h>
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdbool.h>
-# include <math.h>
-// # include <X11/keysystem.h>
+# include <X11/keysym.h>
 
 # define W_HEIGHT 500
 # define W_WIDTH 500
@@ -30,6 +30,9 @@
 # define DESTROY 17
 # define MOUSE_DOWN 4
 # define MOUSE_UP 5
+
+# define ZOOM_IN_LIMIT 
+# define ZOOM_OUT_LIMIT
 
 struct s_fractol;
 struct s_coords;
@@ -92,43 +95,47 @@ struct s_fractol
 typedef struct s_fractol t_fractol;
 typedef struct s_coords t_coords;
 
-//render.c
+//colors.c
+void		put_pixel_convergence(t_fractol *fractol, t_coords coords);
+void		put_pixel_divergence(t_fractol *fractol, t_coords coords, 
+		int iter, t_complex z);
+
+//complex.c
+t_complex 	add_complex(t_complex a, t_complex b);
+double		mod2_complex(t_complex a);
+t_complex	square_complex(t_complex a);
+
+//fractol.c
 void	render(t_fractol *fractol, t_mlx *mlx);
 
+//hooks.c
+void	init_hooks(t_fractol *fractol, t_mlx *mlx);
+
 //inits.c
+void 	fractol_init(t_fractol *fractol);
 void	graphics_init(t_fractol *fractol, t_mlx *mlx);
 void	sets_init(t_set *sets);
-void 	fractol_init(t_fractol *fractol);
+
+//mapping.c
+t_complex	pixel_to_complex(t_view *view, t_coords coords);
 
 //mlx.c
 void	put_new_window(t_fractol *fractol, t_mlx *mlx);
 void	put_new_image(t_fractol *fractol, t_mlx *mlx, t_img *img);
 void	put_pixel(t_img *img, t_coords coords, int color);
 
-//mapping.c
-t_complex	pixel_to_complex(t_view *view, t_coords coords);
-
-
+//perse.c
 void	parse(t_fractol *fractol, int arc, char **arv);
 void	hooks(t_fractol *fractol, t_mlx *mlx);
+
+//sets.c
+void	julia_set(t_fractol *fractol, t_coords coords);
+void	mandelbrot_set(t_fractol *fractol, t_coords coords);
 
 //utils.c
 void	end_program(int exit_status, t_fractol *fractol);
 void end_program_with_help(int exit_status, t_fractol *fractol);
 int	exit_destroy(t_fractol *fractol);
 bool	is_number_str(char *str);
-
-void	julia_set(t_fractol *fractol, t_coords coords);
-void	mandelbrot_set(t_fractol *fractol, t_coords coords);
-
-//complex.c
-t_complex add_complex(t_complex a, t_complex b);
-double	mod2_complex(t_complex a);
-t_complex	square_complex(t_complex a);
-
-//colors.c
-void	put_pixel_convergence(t_fractol *fractol, t_coords coords);
-void	put_pixel_divergence(t_fractol *fractol, t_coords coords, 
-		int iter, t_complex z);
 
 #endif
