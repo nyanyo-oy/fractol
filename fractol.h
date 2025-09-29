@@ -28,6 +28,8 @@
 # define DIVERGENCE_BASE_COLOR 13283165
 
 # define DESTROY 17
+# define MOUSE_DOWN 4
+# define MOUSE_UP 5
 
 struct s_fractol;
 struct s_coords;
