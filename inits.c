@@ -6,7 +6,7 @@
 /*   By: kenakamu <kenakamu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 15:12:53 by kenakamu          #+#    #+#             */
-/*   Updated: 2025/09/30 16:29:03 by kenakamu         ###   ########.fr       */
+/*   Updated: 2025/09/30 17:30:47 by kenakamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ void	graphics_init(t_fractol *fractol, t_mlx *mlx)
 		lowest = W_HEIGHT;
 	else
 		lowest = W_WIDTH;
-	fractol->view.max_x = 2 * W_WIDTH / lowest;
-	fractol->view.min_x = -2 * W_WIDTH / lowest;
-	fractol->view.max_y = 2 * W_HEIGHT / lowest;
-	fractol->view.max_y = -2 * W_HEIGHT / lowest;
+	fractol->view.max_x = 2.0 * W_WIDTH / lowest;
+	fractol->view.min_x = -2.0 * W_WIDTH / lowest;
+	fractol->view.max_y = 2.0 * W_HEIGHT / lowest;
+	fractol->view.min_y = -2.0 * W_HEIGHT / lowest;
 }

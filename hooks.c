@@ -6,7 +6,7 @@
 /*   By: kenakamu <kenakamu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 15:12:50 by kenakamu          #+#    #+#             */
-/*   Updated: 2025/09/30 17:24:35 by kenakamu         ###   ########.fr       */
+/*   Updated: 2025/09/30 17:58:45 by kenakamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ static int	handle_zoom(int button, int x, int y, t_fractol *fractol)
 		- (delta_x * ((double)1 - (double)x / (W_WIDTH - 1))) * sign;
 	fractol->view.min_x = fractol->view.min_x
 		+ (delta_x * ((double)x / (W_WIDTH - 1))) * sign;
-	fractol->view.max_y = fractol->view.min_y
+	fractol->view.max_y = fractol->view.max_y
 		- (delta_y * ((double)y / (W_HEIGHT - 1))) * sign;
-	fractol->view.max_y = fractol->view.min_y
+	fractol->view.min_y = fractol->view.min_y
 		+ (delta_y * ((double)1 - (double)y / (W_HEIGHT - 1))) * sign;
 	return (EXIT_SUCCESS);
 }
@@ -69,7 +69,7 @@ static int	key_hook_handler(int keycode, t_fractol *fractol)
 
 void	hooks(t_fractol *fractol, t_mlx *mlx)
 {
-	mlx_key_hook (mlx->win_ptr, &key_hook_handler, mlx);
+	mlx_key_hook (mlx->win_ptr, &key_hook_handler, fractol);
 	mlx_mouse_hook (mlx->win_ptr, &mouse_hook_handler, fractol);
 	mlx_hook(mlx->win_ptr, DESTROY, 0, &exit_destroy, fractol);
 }

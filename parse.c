@@ -6,7 +6,7 @@
 /*   By: kenakamu <kenakamu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 14:53:05 by kenakamu          #+#    #+#             */
-/*   Updated: 2025/09/30 15:13:11 by kenakamu         ###   ########.fr       */
+/*   Updated: 2025/09/30 18:01:03 by kenakamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,7 @@ void	parse(t_fractol *fractol, int arc, char **arv)
 	}
 	if (arc == 4)
 	{
-		if (is_number_str(arv[2]) == false && \
-				is_number_str(arv[3]) == false)
+		if (is_number_str(arv[2]) == false || is_number_str(arv[3]) == false)
 		{
 			end_program_with_help(EXIT_FAILURE, fractol);
 		}
