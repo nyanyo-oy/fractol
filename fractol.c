@@ -1,13 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fractol.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kenakamu <kenakamu@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/09/30 15:12:43 by kenakamu          #+#    #+#             */
+/*   Updated: 2025/09/30 16:21:10 by kenakamu         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fractol.h"
-
-
 
 static void	core_fractol(t_fractol *fractol)
 {
-	t_coords coords;
-	int	x;
-	int	y;
-	
+	t_coords	coords;
+	int			x;
+	int			y;
 
 	x = 0;
 	while (x < W_WIDTH)
@@ -27,8 +36,8 @@ static void	core_fractol(t_fractol *fractol)
 void	render(t_fractol *fractol, t_mlx *mlx)
 {
 	void	*img_old_ptr;
-	
-	put_new_window(fractol, mlx);
+
+	//put_new_window(fractol, mlx);
 	img_old_ptr = mlx->img.img_ptr;
 	put_new_image(fractol, mlx, &mlx->img);
 	core_fractol(fractol);

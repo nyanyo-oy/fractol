@@ -1,13 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fractol.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kenakamu <kenakamu@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/09/30 15:12:46 by kenakamu          #+#    #+#             */
+/*   Updated: 2025/09/30 17:12:00 by kenakamu         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FRACTOL_H
 # define FRACTOL_H
 
-# include "minilibx-linux/mlx.h"
 # include "libft/libft.h"
+# include "minilibx-linux/mlx.h"
 # include <math.h>
+# include <stdbool.h>
 # include <stdlib.h>
 # include <unistd.h>
-# include <stdbool.h>
-# include <X11/keysym.h>
 
 # define W_HEIGHT 500
 # define W_WIDTH 500
@@ -15,7 +26,7 @@
 # define SUCCESS 0
 # define FAILURE 1
 
-# define SET_COUNT 2
+//# define SET_COUNT 2
 # define SET_01 "julia"
 # define SET_02 "mandelbrot"
 
@@ -28,114 +39,111 @@
 # define DIVERGENCE_BASE_COLOR 13283165
 
 # define DESTROY 17
+
+# define K_ESC 0xff1b
+# define K_EQUAL 0x3d
+# define K_MINUS 0x2d
+# define K_SPACE 0x20
 # define MOUSE_DOWN 4
 # define MOUSE_UP 5
 
-# define ZOOM_IN_LIMIT 
-# define ZOOM_OUT_LIMIT
+//# define ZOOM_IN_LIMIT
+//# define ZOOM_OUT_LIMIT
 
-struct s_fractol;
-struct s_coords;
-typedef void	(*t_render_func)(struct s_fractol *, struct s_coords);
+struct						s_fractol;
+struct						s_coords;
+typedef void				(*t_render_func)(struct s_fractol *,
+								struct s_coords);
 
 typedef struct s_set
 {
-	const char		*name;
-	t_render_func	render_func;
-}	t_set;
+	const char				*name;
+	t_render_func			render_func;
+}							t_set;
 
 typedef struct s_complex
 {
-	double	real;
-	double	imag;
-}	t_complex;
+	double					real;
+	double					imag;
+}							t_complex;
 
-
-typedef struct	s_img
+typedef struct s_img
 {
-	void    *img_ptr;
-    char    *addr;
-    int     bits_per_pixel;
-    int     size_line;
-    int		endian;
-}	t_img;
+	void					*img_ptr;
+	char					*addr;
+	int						bits_per_pixel;
+	int						size_line;
+	int						endian;
+}							t_img;
 
-typedef struct	s_mlx
+typedef struct s_mlx
 {
-	void	*mlx_ptr;
-	void	*win_ptr;
-	t_img	img;
-}	t_mlx;
+	void					*mlx_ptr;
+	void					*win_ptr;
+	t_img					img;
+}							t_mlx;
 
-typedef struct	s_view
+typedef struct s_view
 {
-	double	min_x;
-	double	min_y;
-	double	max_x;
-	double	max_y;
-}	t_view;
+	double					min_x;
+	double					min_y;
+	double					max_x;
+	double					max_y;
+}							t_view;
 
-struct s_coords
+struct						s_coords
 {
-	int	x;
-	int	y;
+	int						x;
+	int						y;
 };
 
-struct s_fractol
+struct						s_fractol
 {
-	t_mlx			mlx;
-	t_view			view;
-	t_complex		c;
-	unsigned int	max_iter;
-	t_set			sets[SET_COUNT + 1];
-	t_render_func	set_handler;
-	int				color;
+	t_mlx					mlx;
+	t_view					view;
+	t_complex				c;
+	unsigned int			max_iter;
+	// t_set			sets[SET_COUNT + 1];
+	t_render_func			set_handler;
+	int						color;
 };
 
-typedef struct s_fractol t_fractol;
-typedef struct s_coords t_coords;
+typedef struct s_fractol	t_fractol;
+typedef struct s_coords		t_coords;
 
-//colors.c
-void		put_pixel_convergence(t_fractol *fractol, t_coords coords);
-void		put_pixel_divergence(t_fractol *fractol, t_coords coords, 
-		int iter, t_complex z);
+void						put_pixel_convergence(t_fractol *fractol,
+								t_coords coords);
+void						put_pixel_divergence(t_fractol *fractol,
+								t_coords coords, int iter, t_complex z);
 
-//complex.c
-t_complex 	add_complex(t_complex a, t_complex b);
-double		mod2_complex(t_complex a);
-t_complex	square_complex(t_complex a);
+t_complex					add_complex(t_complex a, t_complex b);
+double						mod2_complex(t_complex a);
+t_complex					square_complex(t_complex a);
 
-//fractol.c
-void	render(t_fractol *fractol, t_mlx *mlx);
+void						render(t_fractol *fractol, t_mlx *mlx);
 
-//hooks.c
-void	init_hooks(t_fractol *fractol, t_mlx *mlx);
+void						hooks(t_fractol *fractol, t_mlx *mlx);
 
-//inits.c
-void 	fractol_init(t_fractol *fractol);
-void	graphics_init(t_fractol *fractol, t_mlx *mlx);
-void	sets_init(t_set *sets);
+void						fractol_init(t_fractol *fractol);
+void						graphics_init(t_fractol *fractol, t_mlx *mlx);
+// void	sets_init(t_set *sets);
 
-//mapping.c
-t_complex	pixel_to_complex(t_view *view, t_coords coords);
+t_complex					pixel_to_complex(t_view *view, t_coords coords);
 
-//mlx.c
-void	put_new_window(t_fractol *fractol, t_mlx *mlx);
-void	put_new_image(t_fractol *fractol, t_mlx *mlx, t_img *img);
-void	put_pixel(t_img *img, t_coords coords, int color);
+void						put_new_window(t_fractol *fractol, t_mlx *mlx);
+void						put_new_image(t_fractol *fractol, t_mlx *mlx,
+								t_img *img);
+void						put_pixel(t_img *img, t_coords coords, int color);
 
-//perse.c
-void	parse(t_fractol *fractol, int arc, char **arv);
-void	hooks(t_fractol *fractol, t_mlx *mlx);
+void						parse(t_fractol *fractol, int arc, char **arv);
 
-//sets.c
-void	julia_set(t_fractol *fractol, t_coords coords);
-void	mandelbrot_set(t_fractol *fractol, t_coords coords);
+void						julia_set(t_fractol *fractol, t_coords coords);
+void						mandelbrot_set(t_fractol *fractol, t_coords coords);
 
-//utils.c
-void	end_program(int exit_status, t_fractol *fractol);
-void end_program_with_help(int exit_status, t_fractol *fractol);
-int	exit_destroy(t_fractol *fractol);
-bool	is_number_str(char *str);
+void						end_program(int exit_status, t_fractol *fractol);
+void						end_program_with_help(int exit_status,
+								t_fractol *fractol);
+int							exit_destroy(t_fractol *fractol);
+bool						is_number_str(char *str);
 
 #endif

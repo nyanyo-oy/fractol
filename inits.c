@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   inits.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kenakamu <kenakamu@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/09/30 15:12:53 by kenakamu          #+#    #+#             */
+/*   Updated: 2025/09/30 16:29:03 by kenakamu         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fractol.h"
 
-void fractol_init(t_fractol *fractol)
+void	fractol_init(t_fractol *fractol)
 {
 	ft_bzero(fractol, sizeof(t_fractol));
 	fractol->max_iter = 20;
@@ -10,19 +22,18 @@ void fractol_init(t_fractol *fractol)
 
 void	graphics_init(t_fractol *fractol, t_mlx *mlx)
 {
+	int	lowest;
+
 	mlx->mlx_ptr = mlx_init();
 	if (mlx->mlx_ptr == NULL)
 		end_program(EXIT_FAILURE, fractol);
+	put_new_window(fractol, mlx);
+	if (W_WIDTH >= W_HEIGHT)
+		lowest = W_HEIGHT;
+	else
+		lowest = W_WIDTH;
+	fractol->view.max_x = 2 * W_WIDTH / lowest;
+	fractol->view.min_x = -2 * W_WIDTH / lowest;
+	fractol->view.max_y = 2 * W_HEIGHT / lowest;
+	fractol->view.max_y = -2 * W_HEIGHT / lowest;
 }
-
-void	sets_init(t_set *sets)
-{
-	sets[0].name = SET_01;
-	sets[0].render_func = &julia_set;
-	sets[1].name = SET_02;
-	sets[1].render_func = &mandelbrot_set;
-	sets[SET_COUNT].name = NULL;
-	sets[SET_COUNT].render_func = NULL;
-}
-
-

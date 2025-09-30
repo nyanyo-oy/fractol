@@ -1,24 +1,42 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kenakamu <kenakamu@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/09/30 14:53:05 by kenakamu          #+#    #+#             */
+/*   Updated: 2025/09/30 15:13:11 by kenakamu         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fractol.h"
 
-static void set_router(t_fractol *fractol, char *parameter)
+static void	set_router(t_fractol *fractol, char *parameter)
 {
-	int	i;
+	const t_set				set_name[] = {
+	{SET_01, &julia_set},
+	{SET_02, &mandelbrot_set},
+	{NULL, NULL}};
+	unsigned int			i;
 
 	i = 0;
-	while (fractol->sets[i].name)
+	while (set_name[i].name)
 	{
-		if(ft_strcmp(parameter, fractol->sets[i].name) == SUCCESS)
+		if (ft_strcmp(parameter, set_name[i].name) == SUCCESS)
 		{
-			fractol->set_handler = fractol->sets[i].render_func;
-			break;
+			fractol->set_handler = set_name[i].render_func;
+			break ;
 		}
 		i++;
 	}
-	if (fractol->sets[i].name == NULL)
+	if (set_name[i].name == NULL)
+	{
 		end_program_with_help(EXIT_FAILURE, fractol);
+	}
 }
 
-static void parse_options(t_fractol *fractol, int arc, char **arv)
+static void	parse_options(t_fractol *fractol, int arc, char **arv)
 {
 	if (fractol->set_handler == &julia_set)
 	{
@@ -41,8 +59,10 @@ static void parse_options(t_fractol *fractol, int arc, char **arv)
 
 void	parse(t_fractol *fractol, int arc, char **arv)
 {
-	if (arc != 2 && arc != 4)
+	if (!(arc == 2 || arc == 4))
+	{
 		end_program_with_help(EXIT_FAILURE, fractol);
+	}
 	if (arc == 4)
 	{
 		if (is_number_str(arv[2]) == false && \

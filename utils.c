@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kenakamu <kenakamu@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/09/30 15:13:16 by kenakamu          #+#    #+#             */
+/*   Updated: 2025/09/30 15:14:10 by kenakamu         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fractol.h"
 
 void	end_program(int exit_status, t_fractol *fractol)
@@ -14,12 +26,12 @@ void	end_program(int exit_status, t_fractol *fractol)
 	exit (exit_status);
 }
 
-void end_program_with_help(int exit_status, t_fractol *fractol)
+void	end_program_with_help(int exit_status, t_fractol *fractol)
 {
 	ft_printf("./fractol julia (r [-1000.0, 1000.0] i [-1000.0, 1000.0])\n");//2以上だとなんとか
 	ft_printf("./fractol mandelbrot\n");
 	end_program(exit_status, fractol);
-}	
+}
 
 int	exit_destroy(t_fractol *fractol)
 {
@@ -31,7 +43,7 @@ bool	is_number_str(char *str)
 {
 	int	i;
 	int	point;
-	
+
 	i = 0;
 	if (str[i] == '-')
 		i++;
