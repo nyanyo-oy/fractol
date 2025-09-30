@@ -6,7 +6,7 @@
 /*   By: kenakamu <kenakamu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 15:12:53 by kenakamu          #+#    #+#             */
-/*   Updated: 2025/09/30 17:30:47 by kenakamu         ###   ########.fr       */
+/*   Updated: 2025/09/30 19:52:04 by kenakamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,10 @@ void	fractol_init(t_fractol *fractol)
 	fractol->max_iter = 20;
 	fractol->c.real = -1;
 	fractol->c.imag = 0;
+
+	fractol->zoom = 1.0;
+	fractol->offset_x = 0.0;
+	fractol->offset_y = 0.0;
 }
 
 void	graphics_init(t_fractol *fractol, t_mlx *mlx)

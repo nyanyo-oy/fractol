@@ -6,7 +6,7 @@
 /*   By: kenakamu <kenakamu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 15:12:46 by kenakamu          #+#    #+#             */
-/*   Updated: 2025/09/30 19:09:52 by kenakamu         ###   ########.fr       */
+/*   Updated: 2025/09/30 20:52:42 by kenakamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-# define W_HEIGHT 500
 # define W_WIDTH 500
+# define W_HEIGHT 500
 
 # define SUCCESS 0
 # define FAILURE 1
@@ -105,6 +105,10 @@ struct						s_fractol
 	unsigned int			max_iter;
 	t_render_func			set_handler;
 	int						color;
+
+	double					zoom;
+	double					offset_x;
+	double					offset_y;
 };
 
 typedef struct s_fractol	t_fractol;
@@ -125,9 +129,10 @@ void						hooks(t_fractol *fractol, t_mlx *mlx);
 
 void						fractol_init(t_fractol *fractol);
 void						graphics_init(t_fractol *fractol, t_mlx *mlx);
-// void	sets_init(t_set *sets);
 
-t_complex					pixel_to_complex(t_view *view, t_coords coords);
+t_complex	pixel_to_complex_zoom(t_fractol *fractol, t_coords coords);
+//t_complex					pixel_to_complex(t_fractol *fractol,
+//								t_coords coords);
 
 void						put_new_window(t_fractol *fractol, t_mlx *mlx);
 void						put_new_image(t_fractol *fractol, t_mlx *mlx,
