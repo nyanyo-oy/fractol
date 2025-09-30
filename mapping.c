@@ -6,7 +6,7 @@
 /*   By: kenakamu <kenakamu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 15:13:00 by kenakamu          #+#    #+#             */
-/*   Updated: 2025/09/30 15:13:01 by kenakamu         ###   ########.fr       */
+/*   Updated: 2025/09/30 18:15:57 by kenakamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ t_complex	pixel_to_complex(t_view *view, t_coords coords)
 	t_complex	c;
 	double		x_range;
 	double		y_range;
-	
+
 	x_range = view->max_x - view->min_x;
 	y_range = view->max_y - view->min_y;
 	c.real = view->min_x + (double)coords.x / (W_WIDTH - 1) * x_range;
-	c.imag = view->min_y + (double)coords.y / (W_HEIGHT - 1) * y_range;
+	c.imag = view->min_y + (double)coords.y / (W_HEIGHT - 1) * y_range;//マイナスにする？
 	return (c);
 }

@@ -6,7 +6,7 @@
 /*   By: kenakamu <kenakamu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 15:12:46 by kenakamu          #+#    #+#             */
-/*   Updated: 2025/09/30 17:12:00 by kenakamu         ###   ########.fr       */
+/*   Updated: 2025/09/30 19:09:52 by kenakamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,6 @@ struct						s_fractol
 	t_view					view;
 	t_complex				c;
 	unsigned int			max_iter;
-	// t_set			sets[SET_COUNT + 1];
 	t_render_func			set_handler;
 	int						color;
 };

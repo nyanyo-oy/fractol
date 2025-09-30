@@ -6,7 +6,7 @@
 /*   By: kenakamu <kenakamu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 15:12:43 by kenakamu          #+#    #+#             */
-/*   Updated: 2025/09/30 16:21:10 by kenakamu         ###   ########.fr       */
+/*   Updated: 2025/09/30 19:09:30 by kenakamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ void	render(t_fractol *fractol, t_mlx *mlx)
 {
 	void	*img_old_ptr;
 
-	//put_new_window(fractol, mlx);
 	img_old_ptr = mlx->img.img_ptr;
 	put_new_image(fractol, mlx, &mlx->img);
 	core_fractol(fractol);
