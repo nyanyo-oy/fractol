@@ -6,7 +6,7 @@
 /*   By: kenakamu <kenakamu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 15:12:46 by kenakamu          #+#    #+#             */
-/*   Updated: 2025/09/30 20:52:42 by kenakamu         ###   ########.fr       */
+/*   Updated: 2025/09/30 22:29:33 by kenakamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,12 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-# define W_WIDTH 500
-# define W_HEIGHT 500
+# define W_WIDTH 860
+# define W_HEIGHT 430
 
 # define SUCCESS 0
 # define FAILURE 1
 
-//# define SET_COUNT 2
 # define SET_01 "julia"
 # define SET_02 "mandelbrot"
 
@@ -35,7 +34,6 @@
 
 # define ESCAPE_THRESHOLD_SQ 4.0
 
-# define COLOR_MODE 4
 # define DIVERGENCE_BASE_COLOR 13283165
 
 # define DESTROY 17
@@ -46,9 +44,6 @@
 # define K_SPACE 0x20
 # define MOUSE_DOWN 4
 # define MOUSE_UP 5
-
-//# define ZOOM_IN_LIMIT
-//# define ZOOM_OUT_LIMIT
 
 struct						s_fractol;
 struct						s_coords;
@@ -66,6 +61,12 @@ typedef struct s_complex
 	double					real;
 	double					imag;
 }							t_complex;
+
+typedef struct s_mouse
+{
+	int						x;
+	int						y;
+}							t_mouse;
 
 typedef struct s_img
 {
@@ -130,9 +131,8 @@ void						hooks(t_fractol *fractol, t_mlx *mlx);
 void						fractol_init(t_fractol *fractol);
 void						graphics_init(t_fractol *fractol, t_mlx *mlx);
 
-t_complex	pixel_to_complex_zoom(t_fractol *fractol, t_coords coords);
-//t_complex					pixel_to_complex(t_fractol *fractol,
-//								t_coords coords);
+t_complex					pixel_to_complex_zoom(t_fractol *fractol,
+								t_coords coords);
 
 void						put_new_window(t_fractol *fractol, t_mlx *mlx);
 void						put_new_image(t_fractol *fractol, t_mlx *mlx,
@@ -149,5 +149,9 @@ void						end_program_with_help(int exit_status,
 								t_fractol *fractol);
 int							exit_destroy(t_fractol *fractol);
 bool						is_number_str(char *str);
+
+int							key_hook_handler(int keycode, t_fractol *fractol);
+int							mouse_hook_handler(int button, int x, int y,
+								t_fractol *fractol);
 
 #endif

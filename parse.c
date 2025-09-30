@@ -6,7 +6,7 @@
 /*   By: kenakamu <kenakamu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 14:53:05 by kenakamu          #+#    #+#             */
-/*   Updated: 2025/09/30 18:01:03 by kenakamu         ###   ########.fr       */
+/*   Updated: 2025/09/30 21:16:15 by kenakamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ static void	parse_options(t_fractol *fractol, int arc, char **arv)
 		{
 			fractol->c.real = ft_atof_lite(arv[2]);
 			fractol->c.imag = ft_atof_lite(arv[3]);
-			if (fractol->c.real < -1000.0 || fractol->c.imag > 1000.0 || \
-				fractol->c.imag < -1000.0 || fractol->c.imag > 1000.0)
+			if (fractol->c.real < -1000.0 || fractol->c.real > 1000.0
+				|| fractol->c.imag < -1000.0 || fractol->c.imag > 1000.0)
 			{
 				end_program_with_help(EXIT_FAILURE, fractol);
 			}

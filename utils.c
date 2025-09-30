@@ -6,7 +6,7 @@
 /*   By: kenakamu <kenakamu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 15:13:16 by kenakamu          #+#    #+#             */
-/*   Updated: 2025/09/30 15:14:10 by kenakamu         ###   ########.fr       */
+/*   Updated: 2025/09/30 21:41:07 by kenakamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ void	end_program(int exit_status, t_fractol *fractol)
 
 void	end_program_with_help(int exit_status, t_fractol *fractol)
 {
-	ft_printf("./fractol julia (r [-1000.0, 1000.0] i [-1000.0, 1000.0])\n");//2以上だとなんとか
+	ft_printf("./fractol julia (r [-1000.0, 1000.0] \
+			 i [-1000.0, 1000.0])\n");
 	ft_printf("./fractol mandelbrot\n");
 	end_program(exit_status, fractol);
 }

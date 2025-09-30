@@ -1,15 +1,16 @@
 NAME		=	fractol
 
-SRCS		=	colors.c	\
-				complex.c	\
-				fractol.c	\
-				hooks.c		\
-				inits.c		\
-				main.c		\
-				mapping.c	\
-				mlx.c		\
-				parse.c		\
-				sets.c		\
+SRCS		=	colors.c			\
+				complex.c			\
+				fractol.c			\
+				hook_handlers.c		\
+				hook.c				\
+				inits.c				\
+				main.c				\
+				mapping.c			\
+				mlx.c				\
+				parse.c				\
+				sets.c				\
 				utils.c
 
 OBJDIR		=	OBJS

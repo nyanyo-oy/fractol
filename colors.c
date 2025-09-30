@@ -6,7 +6,7 @@
 /*   By: kenakamu <kenakamu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 15:12:37 by kenakamu          #+#    #+#             */
-/*   Updated: 2025/09/30 15:15:09 by kenakamu         ###   ########.fr       */
+/*   Updated: 2025/09/30 21:35:31 by kenakamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,7 @@
 
 void	put_pixel_convergence(t_fractol *fractol, t_coords coords)
 {
-	const int	colors[COLOR_MODE] = {0, 1, 10, 316};
-
-	put_pixel(&fractol->mlx.img, coords, 0xFF000000 + colors[fractol->color]
-		* (int)fabs((double)(coords.x + coords.y)));
+	put_pixel(&fractol->mlx.img, coords, 0xFF000000);
 }
 
 void	put_pixel_divergence(t_fractol *fractol, t_coords coords,

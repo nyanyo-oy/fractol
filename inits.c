@@ -6,7 +6,7 @@
 /*   By: kenakamu <kenakamu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 15:12:53 by kenakamu          #+#    #+#             */
-/*   Updated: 2025/09/30 19:52:04 by kenakamu         ###   ########.fr       */
+/*   Updated: 2025/09/30 21:39:44 by kenakamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,8 @@ void	fractol_init(t_fractol *fractol)
 {
 	ft_bzero(fractol, sizeof(t_fractol));
 	fractol->max_iter = 20;
-	fractol->c.real = -1;
-	fractol->c.imag = 0;
-
+	fractol->c.real = 0.3;
+	fractol->c.imag = -0.5;
 	fractol->zoom = 1.0;
 	fractol->offset_x = 0.0;
 	fractol->offset_y = 0.0;

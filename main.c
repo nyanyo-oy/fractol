@@ -6,7 +6,7 @@
 /*   By: kenakamu <kenakamu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 15:12:56 by kenakamu          #+#    #+#             */
-/*   Updated: 2025/09/30 16:02:12 by kenakamu         ###   ########.fr       */
+/*   Updated: 2025/09/30 21:39:40 by kenakamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,4 +22,5 @@ int	main(int arc, char **arv)
 	render(&fractol, &fractol.mlx);
 	hooks(&fractol, &fractol.mlx);
 	mlx_loop(fractol.mlx.mlx_ptr);
+	return (0);
 }
